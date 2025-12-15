@@ -5,19 +5,15 @@ const timelineSchema = new mangoose.Schema({
         required: true},
     eventDate: {
         type: Date,
-        
         required: true},
     eventDescription: {
         type: String,
         required: true},
-    eventImage: {
-        type: String,
+    eventImages: {
+        type: [String],
         required: false},
     eventLinks: {
-        type: [String],
-        required: false},
-        techUsed: {
-        type: [String],
+        type: String,
         required: false}
 });
 module.exports = mangoose.model("Timeline", timelineSchema);

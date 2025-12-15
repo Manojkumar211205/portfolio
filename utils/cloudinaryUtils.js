@@ -94,3 +94,20 @@ exports.uploadResume = async (file) => {
     return {resumeUrl};
   }
 };
+
+exports.uploadMultipleImages =  async (files) => {
+  const urls = [];
+
+  for (let file of files) {
+    console.log("Uploading file:", file.originalname);
+    const result = await cloudinary.uploader.upload(file.path, {
+      folder: "timeline",
+      resource_type: "image",
+    });
+
+    urls.push(result.secure_url);
+    fs.unlinkSync(file.path); // remove temp file
+  }
+
+  return urls;
+};
